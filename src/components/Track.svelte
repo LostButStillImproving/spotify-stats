@@ -5,7 +5,7 @@
 </script>
 
 <div class="container">
-	<a href='{link}'>
+	<a href='{link}' target='_blank' >
 		<img src='{art}' alt='{name}'>
 		<h4 class='bottom-left'>{name}</h4>
 	</a>
@@ -20,6 +20,7 @@
         position: absolute;
         bottom: 8px;
         left: 16px;
-				color: blue;
+				color: white;
+        -webkit-text-stroke: 1px black;
     }
 </style>
