@@ -1,8 +1,8 @@
 <script>
-	import { timeSpan} from '../../../src/store';
+	import { timeSpan } from '../store';
 	import { ButtonGroup } from 'sveltestrap';
 	import { Button } from 'svelte-materialify';
-	import Login from '../../../src/components/Login.svelte';
+	import Login from '../components/Login.svelte';
 </script>
 
 <div class = 'menu'>
@@ -16,10 +16,10 @@
 
 <slot></slot>
 <style>
-  	.menu {
-				display:inline-flex;
-				margin-left:30em;
-      	justify-content: center;
-      	margin-top: 3em;
-  	}
+    .menu {
+        display:inline-flex;
+        margin-left:30em;
+        justify-content: center;
+        margin-top: 3em;
+    }
 </style>
