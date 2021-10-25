@@ -13,7 +13,7 @@ export const logout = () => {
 	token.set("")
 	tokenExpired.set(true)
 }
-export const login = () => {
+const login = () => {
 	let parsed = {};
 	if (typeof window !== "undefined") {
 		parsed = getHashParams();
