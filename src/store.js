@@ -2,7 +2,7 @@ import { readable, writable } from 'svelte/store'
 import { CLIENT_ID, REDIRECT_URI, REDIRECT_URI_LOCAL } from '../env';
 export const tokenExpired = writable(false)
 export const timeSpan = writable("short_term")
-export const href_login = readable(`https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=token&scope=user-top-read user-read-private&redirect_uri=${REDIRECT_URI_LOCAL}&show_dialog=true`)
+export const href_login = readable(`https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=token&scope=user-top-read user-read-private&redirect_uri=${REDIRECT_URI}&show_dialog=true`)
 export const loggedIn = writable(false)
 export const token = writable("", (set) =>{
 	set(login())
