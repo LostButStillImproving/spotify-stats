@@ -22,6 +22,5 @@
 	.log {
 			display: flex;
 			justify-content: center;
-			margin-top: 3em;
   }
 </style>
