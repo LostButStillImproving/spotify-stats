@@ -10,20 +10,10 @@
 
 <script>
 
-	import { accessToken, tokenExpired, timeSpan } from '../store';
-	import {ButtonGroup, Button} from 'sveltestrap';
+	import { tokenExpired, timeSpan, token, loggedIn } from '../store';
 	import { onMount } from 'svelte';
 	import Track from '../components/Track.svelte';
-	let token;
-	accessToken.subscribe(value => token = value)
-	const trackMap = (item) => {
-		return {
-			name: item.name,
-			art: item.album.images[1].url,
-			info: `Artist: ${item.artists[0].name}\nAlbum: ${item.album.name}`,
-			link: item.external_urls.spotify,
-		};
-	};
+
 	timeSpan.subscribe(getCollection)
 	let collection;
 	async function getCollection() {
@@ -35,15 +25,22 @@
 			offset: 0,
 		});
 
-		if (token) {
+		if ($token) {
 			const res = await fetch(url + params, {
 				headers: {
-					Authorization: "Bearer " + token,
+					Authorization: "Bearer " + $token,
 				},
 			});
 
 			if (res.ok) {
-
+				const trackMap = (item) => {
+					return {
+						name: item.name,
+						art: item.album.images[1].url,
+						info: `Artist: ${item.artists[0].name}\nAlbum: ${item.album.name}`,
+						link: item.external_urls.spotify,
+					};
+				};
 				const data = await res.json();
 				collection = data.items.map(trackMap);
 			} else {
@@ -55,7 +52,7 @@
 	onMount(getCollection);
 </script>
 
-{#if collection}
+{#if collection && $loggedIn}
 	<div class='container'>
 		{#each collection as {art, name, link}}
 			<Track {art} {name} {link}/>
