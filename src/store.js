@@ -4,7 +4,16 @@ export const tokenExpired = writable(false)
 export const timeSpan = writable("short_term")
 export const href_login = readable(`https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=token&scope=user-top-read user-read-private&redirect_uri=${REDIRECT_URI}&show_dialog=true`)
 export const loggedIn = writable(false)
-export const token = readable("", (set) =>{
+export const token = writable("", (set) =>{
+	set(login())
+})
+
+export const logout = () => {
+	loggedIn.set(false);
+	token.set("")
+	tokenExpired.set(true)
+}
+export const login = () => {
 	let parsed = {};
 	if (typeof window !== "undefined") {
 		parsed = getHashParams();
@@ -12,10 +21,10 @@ export const token = readable("", (set) =>{
 	let has_access = typeof parsed.access_token !== "undefined";
 
 	if (has_access) {
-		set(parsed.access_token);
 		loggedIn.set(true)
+		return parsed.access_token;
 	}
-})
+}
 
 function getHashParams() {
 	const hashParams = {};
@@ -26,4 +35,3 @@ function getHashParams() {
 	}
 	return hashParams;
 }
-

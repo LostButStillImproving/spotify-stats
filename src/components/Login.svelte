@@ -1,5 +1,5 @@
 <script>
-	import { href_login, loggedIn} from '../store';
+	import { href_login, loggedIn, logout} from '../store';
 	import { Button } from 'sveltestrap';
 </script>
 
@@ -14,7 +14,7 @@
 {:else }
 	<div class = 'log'>
 		<Button on:click = {() => {
-			loggedIn.set(false)}}>Logout</Button>
+			logout()}}>Logout</Button>
 	</div>
 {/if}
 
