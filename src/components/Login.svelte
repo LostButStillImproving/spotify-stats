@@ -7,7 +7,7 @@
 	<div class = 'log'>
 		<div>
 			<a href="{$href_login}">
-				<Button>Log in to Spotify</Button>
+				<Button color = {'primary'} >Log in to Spotify</Button>
 			</a>
 		</div>
 	</div>
@@ -21,7 +21,5 @@
 <style>
 	.log {
 			display: flex;
-			justify-content: center;
-			margin-top: 3em;
   }
 </style>
