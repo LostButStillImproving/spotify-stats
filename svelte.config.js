@@ -1,13 +1,12 @@
-/** @type {import('@sveltejs/kit').Config} */
-import vercel from '@sveltejs/adapter-vercel';
-
-const config = {
+import adapter from '@sveltejs/adapter-netlify';
+export default {
 	kit: {
-		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte',
-		adapter: vercel()
+		adapter: adapter({
+			// if true, will split your app into multiple functions
+			// instead of creating a single one for the entire app
+			split: false
+		}),
+		target: '#svelte'
 	}
 };
-
-export default config;
 
